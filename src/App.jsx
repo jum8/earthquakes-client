@@ -8,11 +8,11 @@ import FeatureCard from './components/FeatureCard'
 
 function App() {
   const [data, setData] = useState({});
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axiosClient.get("/features", { params: {page, per_page: 12}});
+        const res = await axiosClient.get("/features", { params: {page: page - 1, per_page: 12}});
         setData({ features: res.data, totalPage: res.pagination.total })
         console.log(res)
       } catch (error) {
